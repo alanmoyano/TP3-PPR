@@ -86,7 +86,8 @@ regla3(Codigo, Peso) :-
 
 regla4(NombreEquipo, ListaNombres) :-
     equipo(CodigoEquipo, NombreEquipo, _),
-    findall(NombrePersonaje, (
+    findall(NombrePersonaje,
+        (
             personaje(_, _, NombrePersonaje, CodigoEquipo, _)
         ), ListaNombres).
 
@@ -98,5 +99,9 @@ regla4(NombreEquipo, ListaNombres) :-
 %       los poderes del personaje
 %       (se puede reutilizar la regla 3): regla5/1.
 
-regla5() :-
-    
+regla5(CodigoEquipo, ListaEquipos) :- 
+    findall((NombrePersonaje, PesoTotal),
+        (
+            personaje(Codigo, _, NombrePersonaje, CodigoEquipo, _),
+            regla3(Codigo, PesoTotal)
+        ), ListaEquipos).
