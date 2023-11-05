@@ -50,7 +50,8 @@ enemigo_de(Personaje1, Personaje2) :-
 	Personaje1 \= Personaje2.
 
 
-% 1)	Para cierto código de personaje que se especifica como primer argumento, mostrar los siguientes datos:
+% 1)	Para cierto código de personaje que se especifica como primer argumento, 
+%       mostrar los siguientes datos:
 %       nombre real, nombre del equipo al que pertenece y
 %       lista de poderes (deberá mostrar los nombres de los poderes no lo códigos). Regla sugerida: regla1/4.
 
