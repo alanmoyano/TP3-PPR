@@ -58,7 +58,11 @@ enemigo_de(Personaje1, Personaje2) :-
 regla1(Codigo, NombreReal, NombreEquipo, Poderes) :-
     personaje(Codigo, _, NombreReal, CodigoEquipo, ListaPoderes),
     equipo(CodigoEquipo, NombreEquipo, _),
-    findall(Poder, (member(X, ListaPoderes), poder(X, Poder, _)), Poderes).
+    findall(Poder,
+        (
+            member(X, ListaPoderes),
+            poder(X, Poder, _)
+        ), Poderes).
 
 % 2)	Si existe o no algún personaje que siendo de avengers tenga 
 %       como poder la fuerza sobrehumana pero no cuenta con agilidad. Regla sugerida: regla2/0.
@@ -78,7 +82,11 @@ regla2() :-
 regla3(Codigo, Peso) :-
     personaje(Codigo, _, _, CodigoEquipo, ListaPoderes),
     equipo(CodigoEquipo, _, FactorEquipo),
-    findall(Peso, (member(Poder, ListaPoderes), poder(Poder, _, Peso)), PesosPoderes),
+    findall(Peso,
+        (
+            member(Poder, ListaPoderes),
+            poder(Poder, _, Peso)
+        ), PesosPoderes),
     sumlist(PesosPoderes, SumaPesosPoderes),
     Peso is SumaPesosPoderes * FactorEquipo.
 
