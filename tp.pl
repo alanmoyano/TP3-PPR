@@ -49,11 +49,17 @@ enemigo_de(Personaje1, Personaje2) :-
 	Equipo1 =\= Equipo2,
 	Personaje1 \= Personaje2.
 
-
 % 1)	Para cierto código de personaje que se especifica como primer argumento, 
 %       mostrar los siguientes datos:
 %       nombre real, nombre del equipo al que pertenece y
 %       lista de poderes (deberá mostrar los nombres de los poderes no lo códigos). Regla sugerida: regla1/4.
+
+% regla1/4
+%   Argumentos: 
+%       Codigo: Código de personaje
+%       NombreReal: Nombre real del personaje
+%       NombreEquipo: Nombre del equipo al que pertenece el personaje
+%       Poderes: Lista de poderes del personaje, formada por los nombres de los mismos
 
 regla1(Codigo, NombreReal, NombreEquipo, Poderes) :-
     personaje(Codigo, _, NombreReal, CodigoEquipo, ListaPoderes),
@@ -67,6 +73,8 @@ regla1(Codigo, NombreReal, NombreEquipo, Poderes) :-
 % 2)	Si existe o no algún personaje que siendo de avengers tenga 
 %       como poder la fuerza sobrehumana pero no cuenta con agilidad. Regla sugerida: regla2/0.
 
+% regla2/0
+
 regla2() :-
     personaje(_,_,_,1,ListaPoderes),
     member(fs, ListaPoderes),
@@ -78,6 +86,11 @@ regla2() :-
 %       Se suma el peso en unidades de combate de cada poder 
 %       y se lo multiplica por un factor que depende del equipo
 %       al que pertenece el personaje.
+
+% regla3/2
+%   Argumentos:
+%       Codigo: Código de presonaje
+%       Peso: Peso total del personaje en unidades totales de combate
 
 regla3(Codigo, Peso) :-
     personaje(Codigo, _, _, CodigoEquipo, ListaPoderes),
@@ -93,6 +106,11 @@ regla3(Codigo, Peso) :-
 % 4)	Determinar para un nombre de equipo, la lista de nombres de personajes 
 %       que lo conforman. Regla sugerida: regla4/3.
 
+% regla4/2
+%   Argumentos:
+%       NombreEquipo: Nombre del equipo
+%       ListaNombres: Lista formada por los nombres de los personajes participantes del equipo
+
 regla4(NombreEquipo, ListaNombres) :-
     equipo(CodigoEquipo, NombreEquipo, _),
     findall(NombrePersonaje,
@@ -107,6 +125,11 @@ regla4(NombreEquipo, ListaNombres) :-
 %       el peso total en base a unidades totales de combate según
 %       los poderes del personaje
 %       (se puede reutilizar la regla 3): regla5/1.
+
+% regla5/2
+%   Argumentos:
+%       CodigoEquipo: Código del equipo
+%       ListaEquipos: Lista de los personajes del equipo, formada por tuplas que poseen los nombres de cada personaje y su peso total en unidades totales de combate
 
 regla5(CodigoEquipo, ListaEquipos) :- 
     findall((NombrePersonaje, PesoTotal),
